@@ -2,6 +2,7 @@ var express=require("express");
 var mongoose=require("mongoose");
 var app=express();
 app.use(express.json());
+require("dotenv").config();
 
 var url="mongodb://0.0.0.0:27017/redbus";
 mongoose.connect(url,{useNewUrlParser:true});
@@ -19,8 +20,8 @@ app.get('/',(req,res)=>
 const userRouter=require('./controller/user');
 app.use('/user',userRouter);
 
-// const adminRouter=require('./controller/admin');
-// app.use('/admin',adminRouter);
+const adminRouter=require('./controller/admin');
+app.use('/admin',adminRouter);
 
 app.listen(2727,()=>
 {
