@@ -1,0 +1,33 @@
+const mongoose=require('mongoose');
+const userSchema=new mongoose.Schema({
+    name:{
+        type:String,
+        required:true
+    },
+    age:{
+        type:Number,
+        default:18,
+        required:true
+    },
+    gender:{
+        type:String,
+        enum:["male","female","others"],
+        required:true
+    },
+    contact:{
+        type:String,
+        required:true,
+        minlength:10,
+        maxlength:10
+    },
+    email:{
+        type:String,
+        required:true,
+        unique:true
+    },
+    pwd:{
+        type:String,
+        required:true
+    }
+});
+module.exports=mongoose.model('user',userSchema);   
